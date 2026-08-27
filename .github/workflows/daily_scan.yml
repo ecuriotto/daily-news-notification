@@ -1,0 +1,50 @@
+name: Daily Finance News & Filings Digest
+
+on:
+  schedule:
+    # 07:30 UTC (08:30 CET / 09:30 CEST) - Mattina dal Lunedì al Venerdì
+    - cron: '30 7 * * 1-5'
+    # 17:30 UTC (18:30 CET / 19:30 CEST) - Pomeriggio dal Lunedì al Venerdì
+    - cron: '30 17 * * 1-5'
+  workflow_dispatch: # Consente l'avvio manuale dal sito GitHub con un click
+
+permissions:
+  contents: read
+
+jobs:
+  scan-and-notify:
+    name: Scansione Mercati & Invio Email
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+
+      - name: Configurazione Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Installazione dipendenze
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Esecuzione Scansione & Invio Notifica Email
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+        run: |
+          python main.py --run --email
+
+      - name: Archiviazione Report Generati
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: finance-reports-${{ github.run_id }}
+          path: |
+            reports/*.md
+            reports/*.json
+          retention-days: 14
