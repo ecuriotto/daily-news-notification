@@ -1,5 +1,18 @@
 # 📊 Personal Finance Watcher & Daily Digest
 
+<p align="left">
+  <a href="https://github.com/ecuriotto/daily-news-notification/actions"><img src="https://github.com/ecuriotto/daily-news-notification/actions/workflows/daily_scan.yml/badge.svg" alt="Daily Scan Status" /></a>
+  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white" alt="Python 3.11+" />
+  <img src="https://img.shields.io/badge/Digest-Gmail%20SMTP-EA4335?logo=gmail&logoColor=white" alt="Gmail" />
+  <img src="https://img.shields.io/badge/Tier%200-Seeking%20Alpha-FF8800" alt="Seeking Alpha Tier 0" />
+  <img src="https://img.shields.io/badge/Scan%20Speed-%3C10s%20Parallel-00C853" alt="Scan Speed" />
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License" />
+</p>
+
+| ⏱️ Frequenza | ⚡ Velocità | 🎯 Selezione | 📧 Consegna | ☁️ Costo |
+| :---: | :---: | :---: | :---: | :---: |
+| **2 volte al giorno** (Lun-Ven) | **~5-8 secondi** (multithreading) | **Max 2 news** per ticker | **HTML Responsive** mobile | **100% Free** (GitHub Actions) |
+
 Un sistema automatizzato, leggero e intelligente per il monitoraggio quotidiano di portafogli e watchlist azionarie.  
 Raccoglie in pochi secondi la rassegna stampa finanziaria globale, le analisi fondamentali e le tesi di investimento, applica un **algoritmo di Quality Scoring** per filtrare il rumore e invia ogni giorno un **digest email HTML responsive (ultra-snello e ottimizzato per smartphone)** tramite Gmail.
 
