@@ -36,6 +36,7 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+          WATCHLIST_TICKERS: ${{ secrets.WATCHLIST_TICKERS }}
         run: |
           python main.py --run --email
 

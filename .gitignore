@@ -32,3 +32,7 @@ Thumbs.db
 # Output reports & run artifacts (keep folder tracked via .gitkeep)
 reports/*
 !reports/.gitkeep
+
+# Watchlist personale (privata, non versionare)
+tickers.txt
+!tickers.example.txt

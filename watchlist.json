@@ -1,92 +1,17 @@
 [
   {
-    "ticker": "700",
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "enabled": true
+  },
+  {
+    "ticker": "MSFT",
+    "name": "Microsoft Corporation",
+    "enabled": true
+  },
+  {
+    "ticker": "0700.HK",
     "name": "Tencent Holdings Ltd",
-    "enabled": true
-  },
-  {
-    "ticker": "9988",
-    "name": "Alibaba Group Holding Ltd",
-    "enabled": true
-  },
-  {
-    "ticker": "BFIT",
-    "name": "Basic-Fit N.V.",
-    "enabled": true
-  },
-  {
-    "ticker": "CPNG",
-    "name": "Coupang Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "CRM",
-    "name": "Salesforce Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "JD",
-    "name": "JD.com Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "KSPI",
-    "name": "JSC Kaspi.kz",
-    "enabled": true
-  },
-  {
-    "ticker": "LB",
-    "name": "LandBridge Company LLC",
-    "enabled": true
-  },
-  {
-    "ticker": "MELI",
-    "name": "MercadoLibre Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "META",
-    "name": "Meta Platforms Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "MSCI",
-    "name": "MSCI Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "OKE",
-    "name": "ONEOK Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "PYPL",
-    "name": "PayPal Holdings Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "QXO",
-    "name": "QXO Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "SE",
-    "name": "Sea Ltd",
-    "enabled": true
-  },
-  {
-    "ticker": "SLDP",
-    "name": "Solid Power Inc.",
-    "enabled": true
-  },
-  {
-    "ticker": "DNP",
-    "name": "Dino Polska S.A.",
-    "enabled": true
-  },
-  {
-    "ticker": "APR",
-    "name": "Auto Partner S.A.",
     "enabled": true
   },
   {

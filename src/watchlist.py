@@ -281,6 +281,13 @@ def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[
          usa prioritariamente 'tickers.txt'.
        - Altrimenti usa 'watchlist.json'.
     """
+    import os
+    env_tickers = os.getenv("WATCHLIST_TICKERS", "").strip()
+    if env_tickers and not override_tickers:
+        raw_list = [t.strip() for t in env_tickers.replace("\n", ",").split(",") if t.strip()]
+        if raw_list:
+            override_tickers = raw_list
+
     if override_tickers:
         watchlist = []
         for t in override_tickers:
