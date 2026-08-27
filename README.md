@@ -9,175 +9,175 @@
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License" />
 </p>
 
-| ⏱️ Frequenza | ⚡ Velocità | 🎯 Selezione | 📧 Consegna | ☁️ Costo |
+| ⏱️ Frequency | ⚡ Execution Speed | 🎯 Selection | 📧 Delivery | ☁️ Cost |
 | :---: | :---: | :---: | :---: | :---: |
-| **2 volte al giorno** (Lun-Ven) | **~5-8 secondi** (multithreading) | **Max 2 news** per ticker | **HTML Responsive** mobile | **100% Free** (GitHub Actions) |
+| **Twice daily** (Mon-Fri) | **~5-8 seconds** (multithreaded) | **Max 2 news** per ticker | **HTML Responsive** mobile | **100% Free** (GitHub Actions) |
 
-Un sistema automatizzato, leggero e intelligente per il monitoraggio quotidiano di portafogli e watchlist azionarie.  
-Raccoglie in pochi secondi la rassegna stampa finanziaria globale, le analisi fondamentali e le tesi di investimento, applica un **algoritmo di Quality Scoring** per filtrare il rumore e invia ogni giorno un **digest email HTML responsive (ultra-snello e ottimizzato per smartphone)** tramite Gmail.
+An automated, lightweight, and intelligent monitoring system for stock portfolios and equity watchlists.  
+In just seconds, it scans global financial press, fundamental research, and investment theses, applies an algorithmic **Quality Scoring Engine** to eliminate market noise, and delivers a curated **responsive HTML email digest (optimized for smartphones)** via Gmail.
 
-Funziona sia in **locale** sul tuo computer che in modo **100% autonomo nel cloud tramite GitHub Actions** (gratuito e a PC spento).
-
----
-
-## 🎯 Filosofia: Zero Rumore, Solo Informazioni ad Alto Valore
-
-A differenza dei tradizionali aggregatori finanziari che intasano la casella con dozzine di articoli generici, template algoritmici o bollettini statistici giornalieri, Personal Finance Watcher:
-- Seleziona **esattamente al massimo 2 articoli per azienda** (il meglio della giornata in una lettura da 60 secondi).
-- **Esclude categoricamente dall'email i filing burocratici SEC e i comunicati SDIR** (consultabili separatamente o archiviati nei report locali completi).
-- Assegna la **priorità assoluta alle tesi di Seeking Alpha** ed estrae il **nome dell'analista/autore**.
-- **Disambigua i ticker brevi o internazionali** (es. isola *JD.com* escludendo *JD Sports / JD Vance*, isola *LandBridge (LB)* escludendo *L.B. Foster*).
-- **Ordina le aziende e le notizie in ordine decrescente di rilevanza** (in cima all'email trovi subito i titoli con le notizie più impattanti della giornata).
+Runs both **locally** on your computer and **100% autonomously in the cloud via GitHub Actions** (completely free, zero server maintenance required).
 
 ---
 
-## ⚖️ Come si Calcola lo Score Qualitativo (Ranking)
+## 🎯 Philosophy: Zero Noise, Only High-Conviction Insights
 
-Ogni notizia o analisi raccolta riceve un punteggio trasparente determinato da 5 fattori:
+Unlike generic financial aggregators that flood your inbox with dozens of macro wrap-ups, algorithmic bot templates, or daily transaction dumps, Personal Finance Watcher:
+- Selects **strictly at most 2 top articles per company** (a focused 60-second read).
+- **Excludes routine regulatory filings (SEC EDGAR & Italian SDIR) from the email digest** (they remain archived in local reports for auditing).
+- Prioritizes **in-depth fundamental theses from Seeking Alpha (Tier 0)** and extracts the **author/analyst name**.
+- **Disambiguates short and international tickers** (e.g. isolates *JD.com* from *JD Sports / JD Vance*, isolates *LandBridge (LB)* from *L.B. Foster*).
+- **Ranks companies and articles in descending order of quality score** (the most impactful corporate developments and theses appear at the very top of your email).
+
+---
+
+## ⚖️ Quality Scoring Engine (Ranking Formula)
+
+Each collected headline or research article receives a transparent score based on 5 core factors:
 
 ```
-Punteggio Finale = Punteggio Fonte (Tier) + Evento Materiale + Freschezza - Penalità Clickbait
+Final Score = Source Tier + Material Event Bonus + Freshness Bonus - Clickbait Penalty
 ```
 
-| Livello / Regola | Punti | Descrizione |
+| Tier / Rule | Points | Description |
 | :--- | :---: | :--- |
-| **Tier 0: Seeking Alpha** | **+40 pt** | **Priorità assoluta**. Tesi fondamentali long/short e valutazioni degli analisti (con badge dedicato e nome autore). |
-| **Tier 1: Grandi Testate** | **+25 pt** | *Reuters, Bloomberg, The Wall Street Journal, Financial Times, Barron's, MarketWatch, CNBC*. |
-| **Tier 2: Business & Research** | **+15 pt** | *Investor's Business Daily (IBD), GuruFocus, Forbes, Fortune, Quartz*. |
-| **Tier 3: Web Generico** | **0 pt** | Fonti web secondarie e notizie di agenzia standard. |
-| **Bonus Evento Materiale** | **+15 pt** | Titoli con dati concreti di bilancio o M&A (*Earnings, Guidance, Revenue, Results, Profit, Acquisizioni, Merger, Dividendi, Buyback, CEO*). |
-| **Bonus Freschezza** | **+5 pt** | Articoli pubblicati nelle ultime **12 ore** rispetto a quelli delle 12-24h precedenti. |
-| **Penalità Anti-Clickbait** | **-20 pt** | Titoli generati da bot (*"Should you buy...", "Why is ... down", "Forget X, buy Y", "3 reasons to..."*). |
-| **Esclusione Totale** | **-999 pt** | **Scartati dall'email**: SEC Filings, bollettini algoritmici di broker (*Southbound Capital Flows, short selling turnover*), spam legale/class action e notizie non pertinenti. |
+| **Tier 0: Seeking Alpha** | **+40 pts** | **Highest priority**. Deep fundamental research, long/short investment theses, and community valuations (with dedicated badge and author name). |
+| **Tier 1: Global Financial Media** | **+25 pts** | *Reuters, Bloomberg, The Wall Street Journal, Financial Times, Barron's, MarketWatch, CNBC*. |
+| **Tier 2: Business & Fundamental Research** | **+15 pts** | *Investor's Business Daily (IBD), GuruFocus, Forbes, Fortune, Quartz*. |
+| **Tier 3: Generic Web** | **0 pts** | Standard syndicated web news and general feeds. |
+| **Material Event Bonus** | **+15 pts** | Headlines containing tangible financial data or strategic actions (*Earnings, Guidance, Revenue, Results, Profit, Acquisitions, Mergers, Dividends, Buybacks, CEO*). |
+| **Freshness Bonus** | **+5 pts** | Articles published within the last **12 hours** (prioritized over earlier intraday items). |
+| **Anti-Clickbait Penalty** | **-20 pts** | Algorithmic and speculative bot templates (*"Should you buy...", "Why is ... down", "Forget X, buy Y", "3 reasons to..."*). |
+| **Categorical Exclusion** | **-999 pts** | **Discarded from email**: SEC Filings, daily broker transaction dumps (*Southbound Capital Flows, short selling turnover*), class action lawsuit spam, and off-topic tickers. |
 
-All'interno dell'email:
-- Ogni articolo mostra la pill con il suo punteggio (es. `+60 pt`, `+40 pt`, `+25 pt`).
-- I blocchi delle aziende sono ordinati dall'azienda con il punteggio più alto a quella con meno novità.
-- Gli articoli secondari in eccesso non vengono persi: vengono archiviati nel file Markdown e JSON di archivio.
-
----
-
-## 🌐 Fonti di Informazione Monitorate
-
-1. **Seeking Alpha RSS**: Analisi fondamentali e tesi d'investimento con estrazione dell'autore originale.
-2. **Finviz News Feed**: Flusso in tempo reale per azioni USA e ADR con copertura delle grandi testate.
-3. **Yahoo Finance RSS**: Notizie ticker-specifiche su mercati USA ed esteri con suffissi di borsa (`.MI`, `.HK`, `.AS`, `.WA`).
-4. **Google News Mirato**: Rassegna stampa globale e locale filtrata per brand aziendale e ticker.
-5. **Value Investors Club (Opzionale con `--with-vic`)**: Tesi di investimento approfondite della community di VIC.
-6. **Borsa Italiana / SEC EDGAR (Archivio locale)**: Monitorati e archiviati nei report per tracciabilità storica, ma esclusi dal digest email quotidiano per non creare rumore.
+Inside the email digest:
+- Every article displays a distinct score pill (e.g. `+60 pt`, `+40 pt`, `+25 pt`).
+- Company cards are ordered from the highest-scoring business down to routine updates.
+- Secondary articles are not lost: they are preserved in the Markdown and JSON audit archives.
 
 ---
 
-## 📋 Configurazione Watchlist
+## 🌐 Monitored Data Channels
 
-La tua lista personale di titoli è mantenuta **privata** e non viene caricata su Git.
+1. **Seeking Alpha RSS**: Fundamental analyses and investment theses with native author extraction (`<sa:author_name>`).
+2. **Finviz News Feed**: Real-time ticker news stream covering major Wall Street and ADR headlines.
+3. **Yahoo Finance RSS**: Ticker-specific coverage across US and international markets (`.MI`, `.HK`, `.AS`, `.WA`).
+4. **Targeted Google News**: Global and local news queries filtered by corporate brand and ticker symbol.
+5. **Value Investors Club (Optional with `--with-vic`)**: In-depth value investing theses from the VIC community.
+6. **SEC EDGAR & Borsa Italiana SDIR (Local Archive)**: Tracked and archived in local reports for regulatory compliance, but omitted from the email digest to maintain brevity.
 
-### 1. In Locale: File `tickers.txt`
-Copia il file di esempio e inserisci i ticker da monitorare:
+---
+
+## 📋 Watchlist Setup & Privacy
+
+Your personal stock portfolio is kept **private** and never committed to Git.
+
+### 1. Local Setup: `tickers.txt`
+Copy the example template and customize with your own symbols:
 ```bash
 cp tickers.example.txt tickers.txt
 ```
 
-Modifica `tickers.txt` inserendo un ticker per riga:
+Edit `tickers.txt` with one ticker per line:
 ```text
-# Azioni USA o ADR
+# US Equities or ADRs
 AAPL
 CRM
 MELI
 
-# Borse internazionali (con codice MIC o suffisso Yahoo)
+# International exchanges (via MIC code or Yahoo suffix)
 0700.HK       # Tencent (Hong Kong)
-BEC:xmil      # B&C Speakers (Borsa Italiana Milano)
+BEC:xmil      # B&C Speakers (Milan - Euronext)
 BFIT:xams     # Basic-Fit (Amsterdam)
-DNP.WA        # Dino Polska (Varsavia)
+DNP.WA        # Dino Polska (Warsaw)
 ```
 
-*(Il file `tickers.txt` è inserito nel `.gitignore`: i tuoi titoli rimarranno rigorosamente privati sul tuo computer).*
+*(The file `tickers.txt` is listed in `.gitignore`: your holdings will always remain strictly on your local disk).*
 
 ---
 
-## 💻 Utilizzo da Riga di Comando (Locale)
+## 💻 Command-Line Interface (Local Usage)
 
-Attiva l'ambiente virtuale:
+Activate your Python virtual environment:
 ```bash
 source .venv/bin/activate
 ```
 
-### 1. Scansione Rapida (Genera i report in `reports/`)
+### 1. Fast Scan (Generates local reports in `reports/`)
 ```bash
 python main.py --run
 ```
-Genera in pochi secondi `reports/report_YYYY-MM-DD.md` e `reports/report_YYYY-MM-DD.json`.
+Produces `reports/report_YYYY-MM-DD.md` and `reports/report_YYYY-MM-DD.json` in under 10 seconds.
 
-### 2. Scansione ed Invio Digest Email (Gmail)
+### 2. Scan & Send Email Digest (Gmail)
 ```bash
 python main.py --run --email
 ```
-Invia al tuo indirizzo email il digest sintetico con le notizie Top 2 ordinate per score.
+Dispatches the curated Top 2 digest directly to your inbox.
 
-### 3. Opzioni Utili
-- **Test su singoli ticker estemporanei:**
+### 3. Helpful CLI Options
+- **Ad-hoc scan on specific tickers:**
   ```bash
   python main.py --run --tickers CRM,META,0700.HK
   ```
-- **Finestra temporale personalizzata (default 1 giorno / 24h):**
+- **Custom lookback window (default: 1 day / 24 hours):**
   ```bash
   python main.py --run --days 2
   ```
-- **Diagnosi e validazione della watchlist:**
+- **Ticker validation and diagnostic summary:**
   ```bash
   python main.py --validate
   ```
 
 ---
 
-## 📧 Configurazione Email (Gmail SMTP)
+## 📧 Email Notification Setup (Gmail SMTP)
 
-Per consentire l'invio delle notifiche, Google richiede una **Password per le app** a 16 caratteri:
-1. Accedi al tuo account Google: [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)  
-   *(Assicurati di avere la verifica in due passaggi attiva).*
-2. Crea una password denominata `Finance Watcher`.
-3. Copia la password di 16 caratteri generata.
+To allow Python to send emails securely, Google requires a 16-character **App Password**:
+1. Log in to your Google Account: [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)  
+   *(Ensure 2-Step Verification is enabled).*
+2. Generate a new App Password named `Finance Watcher`.
+3. Copy the generated 16-character password.
 
-### Setup Locale (`.env`)
+### Local Environment (`.env`)
 ```bash
 cp .env.example .env
 ```
-Inserisci i tuoi dati nel file `.env`:
+Populate `.env` with your credentials:
 ```env
-GMAIL_USER=latuamail@gmail.com
+GMAIL_USER=your.email@gmail.com
 GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
-NOTIFICATION_EMAIL=latuamail@gmail.com
+NOTIFICATION_EMAIL=your.email@gmail.com
 ENABLE_EMAIL=true
 ```
 
 ---
 
-## ☁️ Automazione Cloud 100% Gratuita (GitHub Actions)
+## ☁️ 100% Free Cloud Automation (GitHub Actions)
 
-Il repository include il workflow [`.github/workflows/daily_scan.yml`](.github/workflows/daily_scan.yml) che esegue automaticamente il monitoraggio e spedisce l'email **dal lunedì al venerdì alle 07:30 UTC e alle 17:30 UTC** (a computer spento).
+The repository includes a ready-to-use GitHub Actions workflow [`.github/workflows/daily_scan.yml`](.github/workflows/daily_scan.yml) that executes the scan and dispatches the digest **Monday through Friday at 07:30 UTC and 17:30 UTC** (even when your PC is turned off).
 
-### Come configurare i Secrets su GitHub:
-1. Nel tuo repository su GitHub, vai su **Settings** ➔ **Secrets and variables** ➔ **Actions**;
-2. Clicca su **New repository secret** e aggiungi:
-   - `GMAIL_USER`: la tua email Gmail (es. `tua.email@gmail.com`)
-   - `GMAIL_APP_PASSWORD`: la password per le app a 16 caratteri
-   - `NOTIFICATION_EMAIL`: l'indirizzo dove desideri ricevere il digest
-   - `WATCHLIST_TICKERS` *(Opzionale per la massima privacy)*: se non vuoi inserire i tuoi ticker nel codice, puoi incollare l'elenco dei tuoi ticker direttamente qui come secret (separati da virgola, es. `AAPL, MSFT, CRM, MELI, 0700.HK`).
+### Setting up Repository Secrets:
+1. In your GitHub repository, navigate to **Settings** ➔ **Secrets and variables** ➔ **Actions**;
+2. Click **New repository secret** and add:
+   - `GMAIL_USER`: your Gmail address (e.g. `your.email@gmail.com`)
+   - `GMAIL_APP_PASSWORD`: the 16-character Google App Password
+   - `NOTIFICATION_EMAIL`: the address where you want to receive the digest
+   - `WATCHLIST_TICKERS` *(Optional for maximum privacy)*: paste your comma-separated ticker list here (e.g. `AAPL, MSFT, CRM, MELI, 0700.HK`) so your portfolio never appears in Git code or commits.
 
-3. **Esecuzione Manuale**: Dal tab **Actions** di GitHub puoi cliccare in qualunque momento su **"Run workflow"** per ricevere subito un'email aggiornata.
+3. **Manual Trigger**: From the **Actions** tab in your repository, you can click **"Run workflow"** anytime to receive an immediate update on demand.
 
 ---
 
-## 🔒 Sicurezza & Controllo Vulnerabilità
+## 🔒 Security & Dependency Auditing
 
-Il repository adotta i migliori standard di sicurezza per le dipendenze Python:
-- **Dependabot**: Abilitabile su GitHub (**Settings > Code security and analysis**) per ricevere aggiornamenti automatici sulle dipendenze e avvisi CVE.
-- **Audit locale con `pip-audit`** (standard ufficiale PyPA):
+The repository complies with modern Python security practices:
+- **Dependabot**: Enable in GitHub (**Settings > Code security and analysis**) for automated dependency PRs and vulnerability alerts.
+- **Local Vulnerability Audit via `pip-audit`** (official PyPA standard):
   ```bash
   .venv/bin/pip-audit -r requirements.txt
   ```
-- **Controllo pacchetti obsoleti**:
+- **Outdated Package Inspection**:
   ```bash
   .venv/bin/pip list --outdated
   ```
