@@ -8,7 +8,7 @@ Genera avvisi (warnings) chiari per ticker non censiti, esteri o ambigui.
 """
 
 import requests
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Optional, Any
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -68,7 +68,7 @@ def check_vic_presence(vic_symbols: List[str]) -> Tuple[int, str, List[Dict]]:
     return len(found_ideas), latest_date, found_ideas
 
 
-def validate_single_ticker(item: Dict[str, any], check_vic: bool = True) -> Tuple[str, Dict[str, any], List[Dict[str, any]]]:
+def validate_single_ticker(item: Dict[str, Any], check_vic: bool = True) -> Tuple[str, Dict[str, Any], List[Dict[str, Any]]]:
     """Valida un singolo ticker e restituisce (ticker, ticker_status, warnings)."""
     ticker = item["ticker"]
     name = item.get("name", "")
@@ -148,7 +148,7 @@ def is_vic_reachable() -> bool:
         return False
 
 
-def validate_watchlist(watchlist: List[Dict[str, any]], check_vic: bool = False) -> Dict[str, any]:
+def validate_watchlist(watchlist: List[Dict[str, Any]], check_vic: bool = False) -> Dict[str, Any]:
     """
     Esegue la scansione diagnostica concorrente di tutti i ticker della watchlist.
     Rileva incompatibilità di mercato, assenza su VIC (se richiesto) e potenziale ambiguità.
@@ -160,7 +160,8 @@ def validate_watchlist(watchlist: List[Dict[str, any]], check_vic: bool = False)
             "vic_recognized": 0,
             "vic_missing": 0,
             "foreign_tickers": 0,
-            "total_warnings": 0
+            "total_warnings": 0,
+            "vic_online": False
         },
         "by_ticker": {},
         "warnings": []
@@ -168,6 +169,7 @@ def validate_watchlist(watchlist: List[Dict[str, any]], check_vic: bool = False)
 
     # Verifica preliminare raggiungibilità VIC solo se esplicitamente richiesto
     vic_online = is_vic_reachable() if check_vic else False
+    report["summary"]["vic_online"] = vic_online
     if check_vic and not vic_online:
         w_vic_down = "Value Investors Club: Connessione temporaneamente non disponibile o in timeout (firewall/rate-limit). I controlli proseguono per Web News e SEC."
         report["warnings"].append({"ticker": "VIC", "type": "VIC_OFFLINE", "message": w_vic_down})
@@ -194,11 +196,10 @@ def validate_watchlist(watchlist: List[Dict[str, any]], check_vic: bool = False)
                 report["summary"]["foreign_tickers"] += 1
 
     report["summary"]["total_warnings"] = len(report["warnings"])
-    report["summary"]["vic_online"] = vic_online
     return report
 
 
-def print_validation_summary(validation_report: Dict[str, any]):
+def print_validation_summary(validation_report: Dict[str, Any]):
     """Stampa a terminale una vista compatta e dettagliata della diagnosi ticker."""
     summary = validation_report.get("summary", {})
     by_ticker = validation_report.get("by_ticker", {})

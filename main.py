@@ -9,7 +9,7 @@ Script Principale di Monitoraggio Finanziario (Versione 1):
 import sys
 import argparse
 from pathlib import Path
-from typing import List
+from typing import List, Optional, Dict, Any
 from rich.console import Console
 from rich.panel import Panel
 

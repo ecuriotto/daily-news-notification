@@ -6,11 +6,11 @@ Include dizionario di metadata e normalizzazione per mercati internazionali (Yah
 
 import json
 from pathlib import Path
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 import config
 
 # Dizionario di arricchimento intelligente per ticker noti (inclusi internazionali e meno popolari)
-KNOWN_TICKER_METADATA: Dict[str, Dict[str, any]] = {
+KNOWN_TICKER_METADATA: Dict[str, Dict[str, Any]] = {
     "700": {
         "name": "Tencent Holdings Ltd",
         "yahoo_symbol": "0700.HK",
@@ -190,7 +190,7 @@ MIC_TO_YAHOO_SUFFIX = {
 }
 
 
-def parse_raw_ticker(raw_line: str) -> Tuple[str, str, Dict[str, any]]:
+def parse_raw_ticker(raw_line: str) -> Tuple[str, str, Dict[str, Any]]:
     """
     Analizza una riga di ticker grezza, estraendo:
     - Simbolo primario pulito (es. 'BEC:xmil' -> ticker 'BEC:XMIL', base 'BEC', mic 'XMIL')
@@ -269,7 +269,7 @@ def parse_raw_ticker(raw_line: str) -> Tuple[str, str, Dict[str, any]]:
     return raw_upper, meta.get("name", ""), meta
 
 
-def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[List[str]] = None) -> List[Dict[str, any]]:
+def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[List[str]] = None) -> List[Dict[str, Any]]:
     """
     Carica e normalizza la lista di ticker monitorati.
     
@@ -388,7 +388,7 @@ def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[
     return [{"ticker": symbol, "name": name, "enabled": True, "metadata": meta}]
 
 
-def get_ticker_symbols(watchlist: List[Dict[str, any]]) -> List[str]:
+def get_ticker_symbols(watchlist: List[Dict[str, Any]]) -> List[str]:
     """Restituisce solo i simboli dei ticker univoci in maiuscolo."""
     seen = set()
     result = []

@@ -6,7 +6,7 @@ con visualizzazione a terminale tramite Rich e sezione dedicata agli Avvisi (War
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List, Optional, Any
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel

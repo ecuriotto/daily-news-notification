@@ -14,6 +14,7 @@ import time
 import email.utils
 import urllib.parse
 from datetime import datetime, timezone, timedelta
+from typing import List, Dict, Optional, Any, Set
 import requests
 import feedparser
 from bs4 import BeautifulSoup
