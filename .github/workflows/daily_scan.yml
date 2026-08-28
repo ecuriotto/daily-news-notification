@@ -2,9 +2,9 @@ name: Daily Finance News & Filings Digest
 
 on:
   schedule:
-    # 07:30 UTC (08:30 CET / 09:30 CEST) - Mattina dal Lunedì al Venerdì
-    - cron: '30 7 * * 1-5'
-    # 17:30 UTC (18:30 CET / 19:30 CEST) - Pomeriggio dal Lunedì al Venerdì
+    # 07:30 UTC (08:30 CET / 09:30 CEST) - Mattina dal Lunedì al Sabato
+    - cron: '30 7 * * 1-6'
+    # 17:30 UTC (18:30 CET / 19:30 CEST) - Pomeriggio solo dal Lunedì al Venerdì
     - cron: '30 17 * * 1-5'
   workflow_dispatch: # Consente l'avvio manuale dal sito GitHub con un click
 
