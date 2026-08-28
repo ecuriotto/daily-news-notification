@@ -220,13 +220,16 @@ def parse_raw_ticker(raw_line: str) -> Tuple[str, str, Dict[str, Any]]:
         symbol_part, mic_part = raw_upper.split(":", 1)
         base_symbol = symbol_part.strip()
         mic = mic_part.strip()
+    elif "." in raw_upper:
+        symbol_part, _ = raw_upper.split(".", 1)
+        base_symbol = symbol_part.strip()
 
     # Recupera metadati conosciuti o costruisce default intelligenti
-    meta = KNOWN_TICKER_METADATA.get(base_symbol, {}).copy()
-
-    # Se non c'è match su base_symbol, prova con raw_upper
-    if not meta and raw_upper in KNOWN_TICKER_METADATA:
-        meta = KNOWN_TICKER_METADATA[raw_upper].copy()
+    meta = (
+        KNOWN_TICKER_METADATA.get(base_symbol, {}).copy()
+        or KNOWN_TICKER_METADATA.get(base_symbol.lstrip("0"), {}).copy()
+        or KNOWN_TICKER_METADATA.get(raw_upper, {}).copy()
+    )
 
     # Se ancora assente, genera metadati euristici
     if not meta:
