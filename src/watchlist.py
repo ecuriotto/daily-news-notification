@@ -269,14 +269,41 @@ def parse_raw_ticker(raw_line: str) -> Tuple[str, str, Dict[str, Any]]:
     return raw_upper, meta.get("name", ""), meta
 
 
+def extract_raw_ticker_entries(raw_content: str) -> List[str]:
+    """
+    Estrae le singole voci ticker da un testo grezzo (da tickers.txt o dalla variabile WATCHLIST_TICKERS).
+    Supporta in modo 100% uniforme e intercambiabile:
+    - Formato multilinea (un ticker per riga)
+    - Formato separato da virgole (es. 'AAPL, MSFT, 0700.HK, BEC:xmil')
+    - Righe di commento con '#' o righe vuote (ignorate)
+    - Definizione facoltativa nome con pipe (es. 'TGYM:xmil | Technogym')
+    """
+    entries = []
+    for line in raw_content.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "|" in line:
+            entries.append(line)
+        elif "," in line:
+            for item in line.split(","):
+                item = item.strip()
+                if item and not item.startswith("#"):
+                    entries.append(item)
+        else:
+            entries.append(line)
+    return entries
+
+
 def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[List[str]] = None) -> List[Dict[str, Any]]:
     """
     Carica e normalizza la lista di ticker monitorati.
     
     Risoluzione priorità intelligente:
     1. override_tickers (se specificati da CLI)
-    2. Se specificato un file esplicito via file_path, usa quello.
-    3. Altrimenti, confronta 'tickers.txt' e 'watchlist.json':
+    2. Variabile d'ambiente WATCHLIST_TICKERS (GitHub Secrets / .env)
+    3. Se specificato un file esplicito via file_path, usa quello.
+    4. Altrimenti, confronta 'tickers.txt' e 'watchlist.json':
        - Se tickers.txt ha timestamp di modifica più recente (o watchlist.json contiene solo i demo predefiniti),
          usa prioritariamente 'tickers.txt'.
        - Altrimenti usa 'watchlist.json'.
@@ -284,7 +311,7 @@ def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[
     import os
     env_tickers = os.getenv("WATCHLIST_TICKERS", "").strip()
     if env_tickers and not override_tickers:
-        raw_list = [t.strip() for t in env_tickers.replace("\n", ",").split(",") if t.strip()]
+        raw_list = extract_raw_ticker_entries(env_tickers)
         if raw_list:
             override_tickers = raw_list
 
@@ -333,16 +360,16 @@ def load_watchlist(file_path: Optional[Path] = None, override_tickers: Optional[
         try:
             tickers = []
             with open(target_txt, "r", encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if line and not line.startswith("#"):
-                        symbol, name, meta = parse_raw_ticker(line)
-                        tickers.append({
-                            "ticker": symbol,
-                            "name": name,
-                            "enabled": True,
-                            "metadata": meta
-                        })
+                content = f.read()
+            raw_entries = extract_raw_ticker_entries(content)
+            for entry in raw_entries:
+                symbol, name, meta = parse_raw_ticker(entry)
+                tickers.append({
+                    "ticker": symbol,
+                    "name": name,
+                    "enabled": True,
+                    "metadata": meta
+                })
             if tickers:
                 return tickers
         except Exception as e:

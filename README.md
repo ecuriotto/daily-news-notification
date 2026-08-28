@@ -155,7 +155,7 @@ ENABLE_EMAIL=true
 
 ## ☁️ 100% Free Cloud Automation (GitHub Actions)
 
-The repository includes a ready-to-use GitHub Actions workflow [`.github/workflows/daily_scan.yml`](.github/workflows/daily_scan.yml) that executes the scan and dispatches the digest **Monday through Friday at 07:30 UTC and 17:30 UTC** (even when your PC is turned off).
+The repository includes a ready-to-use GitHub Actions workflow [`.github/workflows/daily_scan.yml`](.github/workflows/daily_scan.yml) that executes the scan and dispatches the digest **Monday through Saturday morning (07:30 UTC / 09:30 CEST) and Monday through Friday evening (17:30 UTC / 19:30 CEST)** (even when your PC is turned off).
 
 ### Setting up Repository Secrets:
 1. In your GitHub repository, navigate to **Settings** ➔ **Secrets and variables** ➔ **Actions**;
@@ -163,7 +163,7 @@ The repository includes a ready-to-use GitHub Actions workflow [`.github/workflo
    - `GMAIL_USER`: your Gmail address (e.g. `your.email@gmail.com`)
    - `GMAIL_APP_PASSWORD`: the 16-character Google App Password
    - `NOTIFICATION_EMAIL`: the address where you want to receive the digest
-   - `WATCHLIST_TICKERS` *(Optional for maximum privacy)*: paste your comma-separated ticker list here (e.g. `AAPL, MSFT, CRM, MELI, 0700.HK`) so your portfolio never appears in Git code or commits.
+   - `WATCHLIST_TICKERS` *(Optional for maximum privacy)*: paste your ticker list here (you can paste comma-separated tickers like `AAPL, MSFT, CRM, 0700.HK, BEC:xmil` or copy-paste your entire `tickers.txt` line-by-line). Both formats are 100% supported and interchangeable.
 
 3. **Manual Trigger**: From the **Actions** tab in your repository, you can click **"Run workflow"** anytime to receive an immediate update on demand.
 

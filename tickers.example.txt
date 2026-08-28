@@ -1,12 +1,14 @@
 # Esempio di Watchlist per Personal Finance Watcher
-# Inserisci un ticker per riga (le righe con '#' o vuote vengono ignorate).
-# Copia questo file in 'tickers.txt' e personalizza con i tuoi titoli da monitorare.
+# Inserisci i ticker da monitorare (un ticker per riga OPPURE separati da virgola).
+# Le righe vuote o con '#' vengono ignorate.
+# Copia questo file in 'tickers.txt' o incollalo direttamente nel Secret GitHub WATCHLIST_TICKERS.
 #
-# Formati supportati:
-# - Azioni USA / ADR standard: TICKER (es. AAPL, MSFT, MELI)
+# Formati supportati (100% identici in tickers.txt e WATCHLIST_TICKERS):
+# - Azioni USA / ADR standard: TICKER (es. AAPL, MSFT, CRM, MELI)
 # - Borse internazionali con codice MIC: TICKER:MIC (es. BEC:xmil, BFIT:xams)
-# - Borse internazionali con suffisso Yahoo: TICKER.SUFFISSO (es. 0700.HK, DNP.WA)
-# - Nomi personalizzati facoltativi inline: TICKER, Nome Azienda
+# - Borse internazionali con suffisso Yahoo: TICKER.SUFFISSO (es. 0700.HK, TGYM.MI, DNP.WA)
+# - Nomi personalizzati facoltativi inline: TICKER | Nome Azienda
+# - Formati multipli: puoi usare una riga per ticker o separare con virgole (es. AAPL, MSFT, 0700.HK)
 
 AAPL
 MSFT
